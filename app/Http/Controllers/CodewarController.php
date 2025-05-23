@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\View;
 use Symfony\Component\Process\Process;
 use Illuminate\Http\Request;
+use Symfony\Component\Process\Process as Command;
 
 class CodewarController extends Controller
 {
@@ -29,7 +30,6 @@ class CodewarController extends Controller
 
     public function home()
     {
-
         return view('home', ['challenges' => $this->challenges]);
     }
 
@@ -52,7 +52,6 @@ class CodewarController extends Controller
     {
         $code = $request->input('code');
 
-        // Save to storage/code/UserCode.php
         $codePath = storage_path('code/UserCode.php');
         if (!is_dir(dirname($codePath))) {
             mkdir(dirname($codePath), 0777, true);
@@ -60,7 +59,6 @@ class CodewarController extends Controller
 
         file_put_contents($codePath, "<?php\n\n" . $code);
 
-        // Run the Laravel test
         $testPath = base_path("tests/Feature/" . ucfirst($name) . "Test.php");
 
         $env = [
@@ -68,7 +66,7 @@ class CodewarController extends Controller
             'TEMP' => storage_path('temp'),
         ];
 
-        $process = new \Symfony\Component\Process\Process(['php', 'artisan', 'test', $testPath], base_path(), $env);
+        $process = new Command(['php', 'artisan', 'test', $testPath], base_path(), $env);
         $process->run();
 
         $output = e($process->getOutput());

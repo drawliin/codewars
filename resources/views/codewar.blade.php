@@ -22,8 +22,11 @@
             justify-content: space-between;
         }
 
-        .cont1, .cont2{
-            width: 49%;
+        .cont1{
+            width: 48%;
+        }
+        .cont2{
+            width: 50%;
         }
        
 
@@ -61,13 +64,13 @@
         }
 
         textarea {
-            width: 90%;
+            width: 95%;
             background-color: #2d2d3f;  /* dark but softer */
             color: #d4d4dc;
             padding: 1rem;
             border: 1px solid #44475a;
             font-family: 'Fira Mono', 'Consolas', 'Courier New', monospace;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             line-height: 1.4;
             white-space: pre;
             overflow-wrap: break-word;
@@ -99,7 +102,7 @@
             background-color: #1e1e2f; 
             color: #f0f0f5;
             font-family: 'Fira Mono', 'Consolas', 'Courier New', monospace;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             padding: .6rem 0;
             border-radius: 8px;
             box-shadow: 0 0 15px rgb(30 30 47 / 0.6);
@@ -142,7 +145,7 @@
             max-width: 800px;
             margin-bottom: 2rem;
             font-style: normal;
-            font-weight: 500;
+            font-weight: 900;
             border-radius: 4px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
@@ -164,7 +167,7 @@
             
             <form method="POST" action="{{ url('/challenge/' . $challenge) }}">
                 @csrf
-                <textarea name="code" rows="17" cols="80" placeholder="Write your function here..." >{{ trim($code ?? $func[$challenge]) }}</textarea>
+                <textarea name="code" rows="14" cols="80" placeholder="Write your function here..." >{{ trim($code ?? $func[$challenge]) }}</textarea>
                 <br>
                 <button type="submit"><i class="fa-solid fa-bolt"></i> Run Tests</button>
             </form>
