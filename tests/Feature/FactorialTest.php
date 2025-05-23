@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Services\ChallengeRunner;
 
 require_once __DIR__ . '/../../storage/code/UserCode.php';
 

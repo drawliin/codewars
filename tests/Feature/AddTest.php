@@ -6,6 +6,8 @@ use Tests\TestCase;
 require_once __DIR__ . '/../../storage/code/UserCode.php';
 
 
+
+
 class AddTest extends TestCase
 {
     /** @test */
@@ -17,12 +19,12 @@ class AddTest extends TestCase
     /** @test */
     public function test_add_function_works_two()
     {
-        $this->assertEquals(-5, add(-1, 1));
+        $this->assertEquals(0, add(-1, 1));
     }
     /** @test */
     public function test_add_function_works_three()
     {
-        $this->assertEquals(10, add(40, 60));
+        $this->assertEquals(100, add(40, 60));
     }
 }
 

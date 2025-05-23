@@ -1,24 +1,15 @@
 
-   WARN  Metadata found in doc-comment for method Tests\Feature\FactorialTest::test_factorial_works(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
+   WARN  Metadata found in doc-comment for method Tests\Feature\AddTest::test_add_function_works(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
 
-   WARN  Metadata found in doc-comment for method Tests\Feature\FactorialTest::test_factorial_works_1(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
+   WARN  Metadata found in doc-comment for method Tests\Feature\AddTest::test_add_function_works_two(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
 
-   WARN  Metadata found in doc-comment for method Tests\Feature\FactorialTest::test_factorial_works_2(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
+   WARN  Metadata found in doc-comment for method Tests\Feature\AddTest::test_add_function_works_three(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
 
-   WARN  Metadata found in doc-comment for method Tests\Feature\FactorialTest::test_factorial_works_3(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
+   PASS  Tests\Feature\AddTest
+  ✓ add function works                                                   0.11s  
+  ✓ add function works two                                               0.01s  
+  ✓ add function works three                                             0.01s  
 
-   WARN  Metadata found in doc-comment for method Tests\Feature\FactorialTest::test_factorial_works_4(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
-
-   WARN  Metadata found in doc-comment for method Tests\Feature\FactorialTest::test_factorial_works_5(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
-
-   PASS  Tests\Feature\FactorialTest
-  ✓ factorial works                                                      0.11s  
-  ✓ factorial works 1                                                    0.01s  
-  ✓ factorial works 2                                                    0.01s  
-  ✓ factorial works 3                                                    0.01s  
-  ✓ factorial works 4                                                    0.01s  
-  ✓ factorial works 5                                                    0.01s  
-
-  Tests:    6 passed (6 assertions)
-  Duration: 0.27s
+  Tests:    3 passed (3 assertions)
+  Duration: 0.24s
 

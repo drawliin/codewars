@@ -21,6 +21,10 @@ class CodewarController extends Controller
             'label' => 'Factorial',
             'description' => 'Write a function that calculates the factorial of a number.'
         ],
+        'first_non_repeating_char' => [
+        'label' => 'First Non-Repeating Character',
+        'description' => 'Write a function that returns the first character in a string that does not repeat anywhere else. Return null if all characters repeat.'
+    ],
     ];
 
     public function home()
@@ -35,6 +39,7 @@ class CodewarController extends Controller
             'add' => 'function add($a, $b) {}',
             'reverse' => 'function reverse($str) {}',
             'factorial' => 'function factorial($n) {}',
+            'first_non_repeating_char' => 'function firstNonRepeatingChar($str) {}',
         ];
         return view('codewar', [
             'challenge' => $name, 

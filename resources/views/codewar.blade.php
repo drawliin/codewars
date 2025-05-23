@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ucfirst($challenge)." Challenge"}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+
     <style>
         body {
-            display: flex;
-            gap: 20px;
-            justify-content: space-between;
             background-color: #ffffff;  /* white background */
             color: #222222;             /* dark text */
             font-family: 'Courier New', Courier, monospace;
             padding: 2rem;
             line-height: 1.6;
+        }
+        .challenge{
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
         }
 
         .cont1, .cont2{
@@ -26,14 +31,33 @@
             color: #e67e22;  /* bright orange */
             margin-bottom: 1rem;
         }
-
-        a {
-            color: #2980b9;  /* strong blue */
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #f1c40f;  /* nice yellow */
+            color: #222;
             font-weight: 600;
+            font-size: 1.2rem;
+            padding: 0.6rem 1rem;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(241, 196, 15, 0.4);
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .back-button i {
+            font-size: 1.1rem;
+        }
+
+        .back-button:hover, 
+        .back-button:focus {
+            background-color: #d4ac0d;  /* darker yellow */
+            box-shadow: 0 4px 8px rgba(212, 172, 13, 0.6);
+            outline: none;
         }
 
         textarea {
@@ -49,57 +73,63 @@
             overflow-wrap: break-word;
             resize: vertical;
             border-radius: 5px;
+            max-height: 600px;
         }
 
         button {
             margin-top: 1.5rem;
-            padding: 0.5rem 1rem;
-            background-color: #27ae60;  /* green */
+            padding: 0.65rem 1.5rem;
+            background: linear-gradient(135deg, #2ecc71, #27ae60); 
             color: white;
             border: none;
             cursor: pointer;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.2s ease;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(58, 134, 255, 0.4);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            user-select: none;
         }
         button:hover, button:focus {
-            background-color: #1e8449;
+            background: linear-gradient(135deg, #27ae60, #219150);
             outline: none;
         }
 
         .pre {
-            background-color: #282a36;  /* very light grey */
-            padding: 1rem 0;
-            border: 1px solid #ddd;
-            overflow-x: auto;
+            background-color: #1e1e2f; 
+            color: #f0f0f5;
+            font-family: 'Fira Mono', 'Consolas', 'Courier New', monospace;
+            font-size: 0.95rem;
+            padding: .6rem 0;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgb(30 30 47 / 0.6);
+            overflow-y: auto;
+            line-height: .6;
             white-space: pre-wrap;
             word-wrap: break-word;
-            line-height: 1;
             margin: 0;
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: #f8f8f2;
+            border: 1px solid #3b3b5a;
         }
 
         .pre span {
-            display: block;  /* no extra vertical spacing */
+            display: block; 
             margin: 0 15px;
             padding: 0;
         }
 
-        /* Colored highlights */
+        
         .green {
-            color: #27ae60; /* dark green */
+            color: #27ae60; 
             font-weight: 600;
         }
 
         .red {
-            color: #c0392b; /* dark red */
+            color: #c0392b; 
             font-weight: 600;
         }
 
         .yellow {
-            color: yellow; /* dark orange */
+            color: yellow; 
             font-weight: 600;
         }
 
@@ -123,58 +153,60 @@
 </head>
 <body>
     
-    <div class="cont1">
-        <a href="{{ url('/') }}">← Back to challenges</a>
+    <a href="{{ url('/') }}" class="back-button" ><i class="fas fa-arrow-left"></i> Back to challenges</a>
     
-        <h2>🔥 Challenge: {{ ucfirst($challenge) }}</h2>
-        <p class="description">
-            {{ $description }}
-        </p>
+    <div class="challenge">
+        <div class="cont1">
+            <h2>🔥 Challenge: {{ ucfirst($challenge) }}</h2>
+            <p class="description">
+                {{ $description }}
+            </p>
+            
+            <form method="POST" action="{{ url('/challenge/' . $challenge) }}">
+                @csrf
+                <textarea name="code" rows="17" cols="80" placeholder="Write your function here..." >{{ trim($code ?? $func[$challenge]) }}</textarea>
+                <br>
+                <button type="submit"><i class="fa-solid fa-bolt"></i> Run Tests</button>
+            </form>
+        </div>
+    
+        <div class="cont2">
+            @if (isset($output))
+                <h3>✅ Test Results</h3>
         
-        <form method="POST" action="{{ url('/challenge/' . $challenge) }}">
-            @csrf
-            <textarea name="code" rows="10" cols="80" placeholder="Write your function here..." >{{ trim($code ?? $func[$challenge]) }}</textarea>
-            <br>
-            <button type="submit">✅ Run Tests</button>
-        </form>
-    </div>
-
-    <div class="cont2">
-        @if (isset($output))
-            <h3>✅ Test Results</h3>
-    
-            @php
-                $lines = explode("\n", $output);
-            @endphp
-    
-            <div class="pre">
-                @foreach ($lines as $line)
-                    @php
-                        $styledLine = $line;
-                        $needles = ['FAIL', '➜', 'failed', '⨯'];
-                        $class = "";
-    
-                        if ((str_contains($line, 'assertEquals') && !str_contains($line, '➜')) || str_contains($line, "✓") || str_contains($line, "PASS") || str_contains($line, "Duration")) {
-                            $class = 'green';
-                        }
-                        foreach ($needles as $n) {
-                            if (str_contains($line, $n)) {
-                                $class = 'red';
+                @php
+                    $lines = explode("\n", $output);
+                @endphp
+        
+                <div class="pre">
+                    @foreach ($lines as $line)
+                        @php
+                            $styledLine = $line;
+                            $needles = ['FAIL', '➜', 'failed', '⨯'];
+                            $class = "";
+        
+                            if ((str_contains($line, 'assertEquals') && !str_contains($line, '➜')) || str_contains($line, "✓") || str_contains($line, "PASS") || str_contains($line, "Duration")) {
+                                $class = 'green';
                             }
-                        }
-                        if (str_contains($line, 'expected')) {
-                            $class = 'yellow';
-                        }
-                        
-                        $line = trim($line);
-                        if ($line === '{}' || $line === '' || str_contains($line, "Metadata")) continue;
-
-                    @endphp
+                            foreach ($needles as $n) {
+                                if (str_contains($line, $n)) {
+                                    $class = 'red';
+                                }
+                            }
+                            if (str_contains($line, 'expected')) {
+                                $class = 'yellow';
+                            }
+                            
+                            $line = trim($line);
+                            if ($line === '{}' || $line === '' || str_contains($line, "Metadata")) continue;
     
-                    <span class="{{ $class }}">{!! trim($styledLine) !!}</span>
-                @endforeach
-            </div>
-        @endif
+                        @endphp
+        
+                        <span class="{{ $class }}">{!! trim($styledLine) !!}</span>
+                    @endforeach
+                </div>
+            @endif
+        </div>
     </div>
 
     <script>
