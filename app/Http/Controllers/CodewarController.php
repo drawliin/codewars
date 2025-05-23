@@ -8,15 +8,25 @@ use Illuminate\Http\Request;
 
 class CodewarController extends Controller
 {
+    public $challenges = [
+        'add' => [
+            'label' => 'Add Two Numbers',
+            'description' => 'Write a function that returns the sum of two numbers.'
+        ],
+        'reverse' => [
+            'label' => 'Reverse a String',
+            'description' => 'Write a function that reverses a string.'
+        ],
+        'factorial' => [
+            'label' => 'Factorial',
+            'description' => 'Write a function that calculates the factorial of a number.'
+        ],
+    ];
+
     public function home()
     {
-        $challenges = [
-            'add' => 'Add Two Numbers',
-            'reverse' => 'Reverse a String',
-            'factorial' => 'Factorial',
-        ];
 
-        return view('home', compact('challenges'));
+        return view('home', ['challenges' => $this->challenges]);
     }
 
     public function run($name)
@@ -26,7 +36,11 @@ class CodewarController extends Controller
             'reverse' => 'function reverse($str) {}',
             'factorial' => 'function factorial($n) {}',
         ];
-        return view('codewar', ['challenge' => $name, 'func' => $func]);
+        return view('codewar', [
+            'challenge' => $name, 
+            'func' => $func,
+            'description' => $this->challenges[$name]['description']
+        ]);
     }
 
     public function submit(Request $request, $name)
@@ -55,9 +69,10 @@ class CodewarController extends Controller
         $output = e($process->getOutput());
 
         return view('codewar', [
-            'challenge' => ucfirst($name),
+            'challenge' => $name,
             'output' => $output,
-            'code' => $code
+            'code' => $code,
+            'description' => $this->challenges[$name]['description']
         ]);
     }
 }

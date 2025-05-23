@@ -60,7 +60,7 @@
         @foreach ($challenges as $key => $label)
             <li>
                 <a href="{{ url('/challenge/' . $key) }}">
-                    👉 {{ $label }}
+                    👉 {{ $label['label'] }}
                 </a>
             </li>
         @endforeach

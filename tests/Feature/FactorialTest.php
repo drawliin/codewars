@@ -12,10 +12,38 @@ class FactorialTest extends TestCase
     public function test_factorial_works()
     {
         $this->assertEquals(1, factorial(0));
-        $this->assertEquals(1, factorial(1));
-        $this->assertEquals(2, factorial(2));
-        $this->assertEquals(6, factorial(3));
-        $this->assertEquals(24, factorial(4));
+        
+    }
+    /** @test */
+    public function test_factorial_works_1()
+    {
+        
         $this->assertEquals(120, factorial(5));
+    }
+    /** @test */
+    public function test_factorial_works_2()
+    {
+        $this->assertEquals(1, factorial(1));
+       
+    }
+    /** @test */
+    public function test_factorial_works_3()
+    {
+        
+        $this->assertEquals(2, factorial(2));
+        
+    }
+    /** @test */
+    public function test_factorial_works_4()
+    {
+        
+        $this->assertEquals(6, factorial(3));
+        
+    }
+    /** @test */
+    public function test_factorial_works_5()
+    {
+        
+        $this->assertEquals(24, factorial(4));
     }
 }

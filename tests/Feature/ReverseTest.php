@@ -12,7 +12,12 @@ class ReverseTest extends TestCase
     public function test_reverse_function_works()
     {
         $this->assertEquals("olleH", reverse("Hello"));
-        $this->assertEquals("awihcinnoK", reverse("Konnichiwa"));
+        
+    }
+    /** @test */
+    public function test_reverse_function_works_two()
+    {
+        $this->assertEquals("aihcinnoK", reverse("Konnichiwa"));
         
     }
 }
