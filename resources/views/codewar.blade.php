@@ -191,6 +191,7 @@
                             if ((str_contains($line, 'assertEquals') && !str_contains($line, '➜')) || str_contains($line, "✓") || str_contains($line, "PASS") || str_contains($line, "Duration")) {
                                 $class = 'green';
                             }
+
                             foreach ($needles as $n) {
                                 if (str_contains($line, $n)) {
                                     $class = 'red';

@@ -24,7 +24,7 @@ class AddTest extends TestCase
     /** @test */
     public function test_add_function_works_three()
     {
-        $this->assertEquals(100, add(40, 60));
+        $this->assertEquals(10, add(40, 60));
     }
 }
 

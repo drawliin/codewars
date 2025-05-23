@@ -5,11 +5,28 @@
 
    WARN  Metadata found in doc-comment for method Tests\Feature\AddTest::test_add_function_works_three(). Metadata in doc-comments is deprecated and will no longer be supported in PHPUnit 12. Update your test code to use attributes instead.
 
-   PASS  Tests\Feature\AddTest
-  ✓ add function works                                                   0.44s  
+   FAIL  Tests\Feature\AddTest
+  ✓ add function works                                                   0.28s  
   ✓ add function works two                                               0.02s  
-  ✓ add function works three                                             0.02s  
+  ⨯ add function works three                                             0.04s  
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\AddTest > add function works three                     
+  Failed asserting that 100 matches expected 10.
 
-  Tests:    3 passed (3 assertions)
-  Duration: 0.79s
+  at tests\Feature\AddTest.php:27
+     23▕     }
+     24▕     /** @test */
+     25▕     public function test_add_function_works_three()
+     26▕     {
+  ➜  27▕         $this->assertEquals(10, add(40, 60));
+     28▕     }
+     29▕ }
+     30▕ 
+     31▕
+
+  1   tests\Feature\AddTest.php:27
+
+
+  Tests:    1 failed, 2 passed (3 assertions)
+  Duration: 0.52s
 
